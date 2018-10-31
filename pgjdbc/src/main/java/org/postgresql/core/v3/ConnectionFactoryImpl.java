@@ -315,6 +315,8 @@ public class ConnectionFactoryImpl extends ConnectionFactory {
     paramList.add(new String[]{"client_encoding", "UTF8"});
     paramList.add(new String[]{"DateStyle", "ISO"});
     paramList.add(new String[]{"TimeZone", createPostgresTimeZone()});
+    // Allow this JDBC connector to connect to GPDB segments directly
+    paramList.add(new String[]{"gp_session_role", "utility"});
 
     Version assumeVersion = ServerVersion.from(PGProperty.ASSUME_MIN_SERVER_VERSION.get(info));
 
